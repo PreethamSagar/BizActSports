@@ -1,6 +1,7 @@
 import Employee from "../models/employee.model.js";
 
 export const insertEmployee = async (req, res) => {
+    console.log(req)
     const employee = req.body;
     console.log("Employee Created: ", req.body)
 

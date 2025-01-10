@@ -8,9 +8,10 @@ import employeeRouter from "./routes/employee.route.js";
 dotenv.config();
 const app = express();
 const port = process.env.PORT;
+app.use(express.json())
 app.use("/api/activity", acitivityRouter)
 app.use("/api/employee", employeeRouter)
-app.use(express.json())
+
 
 app.listen(port, () => {
     connectDB();
