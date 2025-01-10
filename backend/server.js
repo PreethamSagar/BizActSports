@@ -50,3 +50,15 @@ app.get("/api/activities", async (req, res) => {
         res.status(500).json({ success: false, message: "Server Error" });
     }
 })
+
+app.put("/api/activity/:id", async (req, res) => {
+    const { id } = req.params;
+    const activity = req.body;
+    try {
+        const updatedActivity = await Activity.findByIdAndUpdate(id, activity, { new: true });
+        res.status(200).json({ success: true, data: updatedActivity });
+    } catch (error) {
+        console.error("Updating Activity failed: ", error.message);
+        res.status(500).json({ success: false, message: "Server Error" });
+    }
+})
