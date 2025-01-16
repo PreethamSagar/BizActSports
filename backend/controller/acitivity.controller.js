@@ -53,7 +53,9 @@ export const updateActivity = async (req, res) => {
 }
 
 export const getActivity = async (req, res) => {
+    console.log("in get_activity by id")
     const { id } = req.params;
+    console.log("id", id)
     try {
         const activities = await Activity.findById(id);
         res.status(200).json({ success: true, data: activities });
@@ -63,3 +65,35 @@ export const getActivity = async (req, res) => {
         res.status(500).json({ success: false, message: "Server Error" });
     }
 }
+
+//Will get all activities based on search parameter
+export const getActivityByParms = async (req, res) => {
+    console.log("parameter", req.query)
+
+    let filter = {}; // Initialize an empty filter object
+    for (const [key, value] of Object.entries(req.query)) {
+        // Log each key-value pair from req.query
+        console.log(`Key: ${key}, Value: ${value}`);
+        if (!isNaN(value)) {
+            // Convert to a number and apply an exact match
+            filter[key] = Number(value);
+        }
+        else{
+            // Add the value directly to the filter with regex for partial match
+            filter[key] = { $regex: value, $options: "i" }; // Case-insensitive partial match
+        }
+
+        
+    }
+
+    try {
+        console.log("Fetching Activity with filter: ", filter);
+
+        const employees = await Activity.find(filter); // Fetch employees based on the filter
+        res.status(200).json({ success: true, data: employees });
+    } catch (error) {
+        console.log("Error in fetching Activity: ", error.message);
+        res.status(500).json({ success: false, message: "Server Error" });
+    }
+}
+    

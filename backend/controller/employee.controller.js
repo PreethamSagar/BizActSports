@@ -18,3 +18,15 @@ export const insertEmployee = async (req, res) => {
         res.status(500).json({ success: false, message: "Server Error" });
     }
 }
+
+export const getAllEmployees = async (req, res) => {
+    try {
+        console.log("revanth")
+        const employees = await Employee.find({});
+        res.status(200).json({ success: true, data: employees });
+    }
+    catch (error) {
+        console.log("Error in fetching all employees: ", error.message);
+        res.status(500).json({ success: false, message: "Server Error" });
+    }
+}
