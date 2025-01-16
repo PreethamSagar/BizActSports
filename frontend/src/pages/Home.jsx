@@ -1,14 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useActivityCollection } from '../collections/activity';
 
-const res = await fetch("/api/activity", {
-    method: "GET",
-    header: {
-        "Content-Type": "application/json"
-    }
-});
-const data = await res.json();
-console.log(data)
 const Home = () => {
+    const { getActivitys, activitys } = useActivityCollection();
+    useEffect(() => {
+        getActivitys();
+    }, [getActivitys]);
+    console.log("Activitys: ", activitys)
     return (
         <div>
             <h1>Home</h1>
