@@ -5,4 +5,9 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", serif;
+    background-color: aliceblue;
+}
+
+a {
+    text-decoration: none;
 }
