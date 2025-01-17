@@ -82,14 +82,12 @@ export const getActivityByParms = async (req, res) => {
             // Add the value directly to the filter with regex for partial match
             filter[key] = { $regex: value, $options: "i" }; // Case-insensitive partial match
         }
-
-        
     }
 
     try {
         console.log("Fetching Activity with filter: ", filter);
 
-        const employees = await Activity.find(filter); // Fetch employees based on the filter
+        const employees = await Activity.find(filter).sort({activityDate: -1}); // Fetch employees based on the filter
         res.status(200).json({ success: true, data: employees });
     } catch (error) {
         console.log("Error in fetching Activity: ", error.message);
