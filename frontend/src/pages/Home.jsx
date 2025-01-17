@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useActivityCollection } from '../collections/activity';
 import { Grid2 } from '@mui/material';
-import Grid from '@mui/material/Grid2';
 import ActivityCard from '../components/Activity/ActivityCard';
 
 
@@ -16,11 +15,8 @@ const Home = () => {
         <div>
             <Grid2 container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                 {activitys.map((item) =>
-
                     <ActivityCard key={item._id} activity={item} />
-
                 )}
-
             </Grid2>
         </div>
     )
