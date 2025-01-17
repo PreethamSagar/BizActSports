@@ -1,0 +1,11 @@
+.pages {
+    position: fixed;
+    top: 16%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding: 0px 5%;
+    background-color: rgb(240, 248, 255);
+    display: flex;
+    justify-content:space-between;
+}
